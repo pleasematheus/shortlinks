@@ -3,12 +3,14 @@ import { Text, TouchableOpacity, View, TouchableWithoutFeedback, Share } from 'r
 
 import { ModalContainer, Container, Header, LinkArea, Title, LongUrl, ShortLinkArea, ShortLinkUrl } from './styles'
 import { Feather } from '@expo/vector-icons'
-import Cliipboard from 'expo-clipboard'
+import Clipboard from 'expo-clipboard'
 
-export default function ModalLink({ onClose }) {
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
+export default function ModalLink({ onClose, handleGesture }) {
 
 	function copyLink() {
-		Clipboard
+		Clipboard.setString('')
 	}
 
 	async function handleShare() {
@@ -26,6 +28,7 @@ export default function ModalLink({ onClose }) {
 			} else if (result.action === Share.dismissedAction) {
 				console.log('Modal fechado')
 			}
+
 		} catch (error) {
 			console.log(error.message)
 		}
@@ -37,31 +40,58 @@ export default function ModalLink({ onClose }) {
 				<View style={{ flex: 1 }}></View>
 			</TouchableWithoutFeedback>
 			<Container>
+
 				<Header>
 					<TouchableOpacity onPress={() => onClose()}>
-						<Feather name="x" color="#212743" size={30} />
+						<Feather
+							name="x"
+							color="#212743"
+							size={30}
+						/>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={handleShare}>
-						<Feather name="share" color="#212743" size={30} />
+						<TouchableOpacity
+							onPress={() => handleGesture()}
+							style={{ marginTop: -30 }}
+							activeOpacity={0.67}
+						>
+							<Feather
+								name="minus"
+								color="#A7A7A7"
+								size={50}
+							/>
+						</TouchableOpacity>
+
+					<TouchableOpacity onPress={ handleShare }>
+						<Feather
+							name="share"
+							color="#212743"
+							size={30}
+						/>
 					</TouchableOpacity>
 				</Header>
+				
 				<LinkArea>
 					<Title>Link Encurtado</Title>
-					<LongUrl numberOfLines={1}></LongUrl>
+					<LongUrl numberOfLines={1}>
+						
+					</LongUrl>
 					<ShortLinkArea
 						activeOpacity={1}
 						onPress={copyLink}
 					>
-						<ShortLinkUrl numberOfLines={1}></ShortLinkUrl>
+						<ShortLinkUrl numberOfLines={1}>
+							
+						</ShortLinkUrl>
 						<TouchableOpacity onPress={copyLink}>
 							<Feather
 								name="copy"
 								color="#fff"
-								size={30}
+								size={25}
 							/>
 						</TouchableOpacity>
 					</ShortLinkArea>
 				</LinkArea>
+
 			</Container>
 		</ModalContainer>
 	)

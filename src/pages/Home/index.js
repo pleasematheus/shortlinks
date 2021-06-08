@@ -9,6 +9,8 @@ import ModalLink from '../../components/ModalLink'
 import { Feather } from '@expo/vector-icons'
 import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input, ButtonLink, ButtonLinkText } from './styles'
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
 export default function Home() {
 
 	const [input, setInput] = useState('')
@@ -72,7 +74,9 @@ export default function Home() {
 				</KeyboardAvoidingView>
 
 				<Modal visible={modalVisible} transparent animationType="slide">
-					<ModalLink onClose={ () => setModalVisible(false) }/>
+					<GestureHandlerRootView style={{flex: 1}}>
+						<ModalLink onClose={() => setModalVisible(false)}/>
+					</GestureHandlerRootView>
 				</Modal>
 			</LinearGradient>
 		</TouchableWithoutFeedback>
