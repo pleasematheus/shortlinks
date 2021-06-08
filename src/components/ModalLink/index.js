@@ -5,8 +5,6 @@ import { ModalContainer, Container, Header, LinkArea, Title, LongUrl, ShortLinkA
 import { Feather } from '@expo/vector-icons'
 import Clipboard from 'expo-clipboard'
 
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-
 export default function ModalLink({ onClose, handleGesture }) {
 
 	function copyLink() {
@@ -49,17 +47,18 @@ export default function ModalLink({ onClose, handleGesture }) {
 							size={30}
 						/>
 					</TouchableOpacity>
-						<TouchableOpacity
-							onPress={() => handleGesture()}
-							style={{ marginTop: -30 }}
-							activeOpacity={0.67}
-						>
-							<Feather
-								name="minus"
-								color="#A7A7A7"
-								size={50}
-							/>
-						</TouchableOpacity>
+						
+					{/* <TouchableOpacity
+						onPress={() => handleGesture()}
+						style={{ marginTop: -30 }}
+						activeOpacity={0.67}
+					>
+						<Feather
+							name="minus"
+							color="#A7A7A7"
+							size={50}
+						/>
+					</TouchableOpacity> */}
 
 					<TouchableOpacity onPress={ handleShare }>
 						<Feather
