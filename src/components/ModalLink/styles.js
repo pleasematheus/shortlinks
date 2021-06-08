@@ -20,9 +20,8 @@ export const Header = styled.View`
 
 export const LinkArea = styled.View`
 	flex: 1
-	justify-content: : center
+	justify-content: space-between
 `
-
 export const Title = styled.Text`
 	font-size: 33px
 	font-weight: bold
